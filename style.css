@@ -43,6 +43,13 @@ body {
   letter-spacing: -0.02em;
 }
 
+.app__title .app__brand {
+  font-size: 0.42em;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
 .app__subtitle {
   margin: 0.5rem 0 0;
   color: var(--muted);
