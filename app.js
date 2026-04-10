@@ -13,7 +13,9 @@ const PLACEHOLDER_IMAGE =
 async function fetchJson(url) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+    const error = new Error(`Request failed: ${response.status}`);
+    error.status = response.status;
+    throw error;
   }
   return response.json();
 }
@@ -25,9 +27,17 @@ function clearExtraCards() {
 
 async function searchPokemon() {
   const query = pokemonInput.value.trim().toLowerCase();
+  const isNumericId = /^\d+$/.test(query);
+  const isValidPokemonName = /^[a-z-]+$/.test(query);
 
   if (!query) {
     errorMessage.textContent = "Escribe el nombre o ID de un Pokémon.";
+    return;
+  }
+
+  if (!isNumericId && !isValidPokemonName) {
+    errorMessage.textContent =
+      "Ingresa un nombre válido usando solo letras y guiones, o un ID numérico.";
     return;
   }
 
@@ -81,7 +91,11 @@ async function searchPokemon() {
     pokemonImage.alt = "Imagen del Pokémon";
     clearExtraCards();
     errorMessage.textContent =
-      "No se pudo encontrar el Pokémon. Verifica el nombre o ID e intenta de nuevo.";
+      isNumericId && error.status === 404
+        ? "No existe un Pokémon con ese ID en la API."
+        : !isNumericId && error.status === 404
+          ? "No existe un Pokémon con ese nombre en la API."
+          : "No se pudo encontrar el Pokémon. Verifica el nombre o ID e intenta de nuevo.";
   }
 }
 
