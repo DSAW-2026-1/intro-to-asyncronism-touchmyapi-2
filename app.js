@@ -21,8 +21,8 @@ async function fetchJson(url) {
 }
 
 function clearExtraCards() {
-  pokemonDescription.textContent = "Espacio para endpoint #2";
-  pokemonExtra.textContent = "Espacio para endpoint #3";
+  pokemonDescription.textContent = "N.A ";
+  pokemonExtra.textContent = "N.A";
 }
 
 async function searchPokemon() {
