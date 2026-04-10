@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+        <h1 class="app__title">
+          Pokédex Explorer <sub class="app__brand">TouchMyAPI™</sub>
+        </h1>
+
+      <section class="search" aria-label="Buscar Pokémon">
+        <label for="pokemon-input" class="sr-only">Nombre del Pokémon</label>
+        <input
+          id="pokemon-input"
+          class="search__input"
+          type="text"
+          placeholder="Ej: pikachu"
+          autocomplete="off"
+        />
+        <button id="search-button" class="search__button" type="button">Buscar</button>
+      </section>
+
+      <section class="cards-grid">
+        <article class="card card--main" aria-live="polite">
+          <h2 class="card__title">Pokémon seleccionado</h2>
+          <div class="pokemon">
+            <div class="pokemon__image-wrap">
+              <img
+                id="pokemon-image"
+                class="pokemon__image"
+                src="https://placehold.co/220x220/fee2e2/b91c1c?text=Pok%C3%A9mon"
+                alt="Imagen del Pokémon"
+              />
+            </div>
+            <div class="pokemon__data">
+              <p id="pokemon-name" class="pokemon__name">Nombre: --</p>
+              <p id="pokemon-weight" class="pokemon__weight">Peso: -- kg</p>
+            </div>
+          </div>
+          <p id="error-message" class="error-message" role="alert" aria-live="assertive"></p>
+        </article>
+
+        <article class="card card--extra">
+          <h2 class="card__title">Información adicional 1</h2>
+          <div id="pokemon-description" class="card__placeholder">
+          Breve descripción  
+          </div>
+        </article>
+
+        <article class="card card--extra">
+          <h2 class="card__title">Información adicional 2</h2>
+          <div id="pokemon-extra" class="card__placeholder">
+            Evolución
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
